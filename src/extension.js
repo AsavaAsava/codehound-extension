@@ -40,21 +40,26 @@ function analyzeVulnerabilities(document) {
             enter(path) {
                 for (const rule of securityRules) {
                     if (rule.detect(path)) {
+                        console.log(`Detected vulnerability: ${rule.message}`);
                         const loc = path.node.loc;
-                        if (loc) {
-                            const range = new vscode.Range(
-                                new vscode.Position(loc.start.line - 1, loc.start.column),
-                                new vscode.Position(loc.end.line - 1, loc.end.column)
-                            );
 
-                            const diagnostic = new vscode.Diagnostic(
-                                range,
-                                `${rule.message}\n\nSuggestion: ${rule.suggestion}`,
-                                vscode.DiagnosticSeverity.Error
-                            );
-                            diagnostic.code = rule.id;
-                            diagnostics.push(diagnostic);
+                        if (!loc) {
+                            console.log('No location data for node:', path.node);
+                            return;
                         }
+
+                        const range = new vscode.Range(
+                            new vscode.Position(loc.start.line - 1, loc.start.column),
+                            new vscode.Position(loc.end.line - 1, loc.end.column)
+                        );
+
+                        const diagnostic = new vscode.Diagnostic(
+                            range,
+                            `${rule.message}\n\nSuggestion: ${rule.suggestion}`,
+                            vscode.DiagnosticSeverity.Error
+                        );
+                        diagnostic.code = rule.id;
+                        diagnostics.push(diagnostic);
                     }
                 }
             }
@@ -67,11 +72,10 @@ function analyzeVulnerabilities(document) {
 }
 
 function activate(context) {
-    // Initialize diagnostics
+    
     diagnosticCollection = vscode.languages.createDiagnosticCollection('security-detector');
     context.subscriptions.push(diagnosticCollection);
 
-    // Register document change listener
     let changeListener = vscode.workspace.onDidChangeTextDocument(event => {
         if (event.document.languageId === 'javascript') {
             analyzeVulnerabilities(event.document);
@@ -80,7 +84,7 @@ function activate(context) {
 
     context.subscriptions.push(changeListener);
 
-    // Register code actions provider
+
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider('javascript', 
             new SecurityFixProvider(), {
@@ -96,3 +100,5 @@ function activate(context) {
         }
     });
 }
+
+exports.activate = activate;
