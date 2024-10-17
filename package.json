@@ -1,0 +1,37 @@
+{
+  "name": "codehound",
+  "displayName": "codehound",
+  "description": "Detect SQL Injection and XSS vulnerabilities",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": ["Linters"],
+  "activationEvents": [
+    "onLanguage:javascript"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Security Vulnerability Detector",
+      "properties": {
+        "securityDetector.enabledRules": {
+          "type": "array",
+          "default": [
+            "SQL_INJECTION_RISK",
+            "XSS_INNERHTML_RISK",
+            "XSS_DANGEROUS_DOM_INSERTION",
+            "XSS_EVAL_RISK"
+          ],
+          "description": "Enabled security rules"
+        }
+      }
+    }
+  },
+  "main": "./src/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "echo Compilation complete",
+    "lint": "eslint .",
+    "test": "node ./test/runTest.js"
+  }
+}
