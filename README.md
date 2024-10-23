@@ -50,7 +50,7 @@ We welcome contributions! If you’d like to report an issue, suggest a new feat
 1. Fork the repository.
 2. Create a new branch for your feature or bugfix.
 3. Submit a pull request with a detailed description.
-4. 
+
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
