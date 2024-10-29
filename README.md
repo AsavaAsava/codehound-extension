@@ -15,7 +15,6 @@ CodeHound is a Visual Studio Code extension that helps developers identify and r
 Open Visual Studio Code.
 Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window.
 Search for CodeHound and click Install.
-Alternatively, you can install CodeHound via the command line:
 
 
 
