@@ -4,9 +4,13 @@ CodeHound is a Visual Studio Code extension that helps developers identify and r
 
 ## Features
 🛡️ Detect SQL Injection & XSS Vulnerabilities: Scans your JavaScript code for patterns that could lead to security risks, such as SQL Injection and XSS attacks.
+
 ⚡ Real-Time Feedback: Detects vulnerabilities as you type or modify files, highlighting issues directly in the code editor.
+
 📋 Problems Panel Integration: Lists all detected vulnerabilities in VS Code’s Problems panel for easy access and navigation.
+
 🔄 Auto Analysis: Automatically analyzes open JavaScript files for security risks when you open or edit them.
+
 ## Installation
 Open Visual Studio Code.
 Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window.
